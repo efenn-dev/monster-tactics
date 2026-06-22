@@ -1,0 +1,10 @@
+# Godot 4
+.godot/
+
+# Exports / build artifacts
+/build/
+/export_presets.cfg
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

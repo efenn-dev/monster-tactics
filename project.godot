@@ -1,0 +1,13 @@
+config_version=5
+
+[application]
+
+config/name="Monster Tactics"
+run/main_scene="res://src/board/hex_board.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=600
