@@ -65,3 +65,22 @@ func _run() -> void:
 	_check(not bs.is_occupied(Vector2i(2, 2)), "after moving, the old hex is empty")
 	_check(bs.is_occupied(Vector2i(2, 1)), "after moving, the new hex is occupied")
 	_check(bs.unit_at(Vector2i(2, 1)) == hero, "unit_at follows the moved unit")
+
+	print("Vision / fog")
+	var vs := BoardState.new(HexGrid.make_rectangle(7, 7))
+	vs.add_unit(Unit.new(0, Vector2i(3, 3), 3, 1))   # sight 1
+	_eq(vs.visible_cells(0).size(), 7, "sight 1 sees its tile + 6 neighbors")
+
+	var vs0 := BoardState.new(HexGrid.make_rectangle(7, 7))
+	vs0.add_unit(Unit.new(0, Vector2i(3, 3), 3, 0))  # sight 0
+	_eq(vs0.visible_cells(0).size(), 1, "sight 0 sees only its own tile")
+
+	var vs2 := BoardState.new(HexGrid.make_rectangle(7, 7))
+	vs2.add_unit(Unit.new(0, Vector2i(1, 1), 3, 1))
+	vs2.add_unit(Unit.new(1, Vector2i(5, 5), 3, 3))
+	_check(not (Vector2i(5, 5) in vs2.visible_cells(0)), "enemy vision doesn't reveal tiles for the player")
+
+	var vs3 := BoardState.new(HexGrid.make_rectangle(7, 7))
+	vs3.add_unit(Unit.new(0, Vector2i(3, 3), 3, 1))
+	vs3.add_unit(Unit.new(0, Vector2i(4, 3), 3, 1))  # adjacent, overlapping vision
+	_check(vs3.visible_cells(0).size() < 14, "overlapping vision is de-duplicated")

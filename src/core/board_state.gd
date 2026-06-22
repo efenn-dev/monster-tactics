@@ -54,3 +54,14 @@ func reachable_from(start: Vector2i, move_range: int) -> Array:
 			frontier.append(nb)
 			result.append(nb)
 	return result
+
+
+## Hexes currently visible to a team: the union of every friendly unit's
+## sight radius. Units do not block sight (radius vision, no line-of-sight yet).
+func visible_cells(team: int) -> Array:
+	var seen: Dictionary = {}
+	for unit in units:
+		if unit.team == team:
+			for c in grid.cells_within_range(unit.coord, unit.sight_range):
+				seen[c] = true
+	return seen.keys()

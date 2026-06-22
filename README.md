@@ -52,8 +52,8 @@ Exit code is non-zero if any test fails. Tip: add the Godot executable to your P
 ## 3D visuals (parallel track)
 
 - [x] **V1** — low-poly 3D hex terrain, tilted Civ-style camera, lighting, placeholder units
-- [ ] **V2** — mouse picking via raycast (port selection + movement into 3D)
-- [ ] **V3** — fog of war (visibility computed in core + 3-state dim/dark overlay)
+- [x] **V2** — mouse picking via raycast (port selection + movement into 3D)
+- [x] **V3** — fog of war (visibility computed in core + 3-state dim/dark overlay)
 - [ ] later — CC0 unit/terrain models, terrain features (trees, mountains), water polish
 
 ### Dev loop: screenshot review
