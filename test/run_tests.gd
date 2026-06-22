@@ -45,3 +45,23 @@ func _run() -> void:
 	var interior := Vector2i(2, 2)
 	if grid.is_valid(interior):
 		_eq(grid.valid_neighbors(interior).size(), 6, "interior cell has 6 valid neighbors")
+
+	print("BoardState (units + movement)")
+	var bs := BoardState.new(HexGrid.make_rectangle(5, 5))
+	var hero := Unit.new(0, Vector2i(2, 2), 1)
+	bs.add_unit(hero)
+	_check(bs.is_occupied(Vector2i(2, 2)), "the hex a unit stands on is occupied")
+	_check(bs.unit_at(Vector2i(2, 2)) == hero, "unit_at returns the unit on that hex")
+	_eq(bs.reachable_from(Vector2i(2, 2), 1).size(), 6, "move 1 from an open interior hex reaches 6 hexes")
+	_check(not (Vector2i(2, 2) in bs.reachable_from(Vector2i(2, 2), 1)), "a unit's own hex is not in its reachable set")
+
+	var blocker := Unit.new(1, Vector2i(3, 2), 1)
+	bs.add_unit(blocker)
+	var reach := bs.reachable_from(Vector2i(2, 2), 1)
+	_eq(reach.size(), 5, "a blocking unit removes one reachable hex")
+	_check(not (Vector2i(3, 2) in reach), "you cannot move onto an occupied hex")
+
+	bs.move_unit(hero, Vector2i(2, 1))
+	_check(not bs.is_occupied(Vector2i(2, 2)), "after moving, the old hex is empty")
+	_check(bs.is_occupied(Vector2i(2, 1)), "after moving, the new hex is occupied")
+	_check(bs.unit_at(Vector2i(2, 1)) == hero, "unit_at follows the moved unit")

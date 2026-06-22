@@ -41,7 +41,7 @@ Exit code is non-zero if any test fails. Tip: add the Godot executable to your P
 ## Milestones
 
 - [x] **M1** — hex grid renders; hover + click to select a hex
-- [ ] **M2** — place units; show + execute movement range
+- [x] **M2** — place units; show + execute movement range
 - [ ] **M3** — turn system (player ↔ AI phases)
 - [ ] **M4** — combat: attack adjacent, damage, death, win/lose
 - [ ] **M5** — basic AI (approach + attack) ← first fully winnable build
