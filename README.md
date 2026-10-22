@@ -60,3 +60,7 @@ Exit code is non-zero if any test fails. Tip: add the Godot executable to your P
 
 `<console-exe> --path . --quit-after 600 -- --screenshot` renders one frame to
 `user://shot.png` and quits, so the look can be reviewed without a manual screenshot.
+
+## License
+
+MIT. See [LICENSE](LICENSE). Copyright (c) 2026 Emmitt Fennessey.
